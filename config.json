@@ -1,0 +1,10 @@
+{
+    "font": {
+        "family": "JetBrains Mono",
+        "size": "10"
+    },
+    "background": "#222222",
+    "foreground": "#bbbbbb",
+    "cursorColor": "#eeeeee",
+    "suggestionColor": "#005577"
+}

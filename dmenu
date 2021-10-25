@@ -1,13 +1,15 @@
 #!/usr/bin/env python
+import json
+import os
 import subprocess
 from tkinter import *
-import json
-import pathlib
 
-config_file = f'{pathlib.Path.home()}/.config/.dmenurc'
+root_path = os.path.dirname(os.path.abspath(__file__)).replace('\\', '/')
+config_file = f'{root_path}/config.json'
 
 with open(config_file) as file:
-    config = json.loads(file.read())
+    config = json.load(file)
+
 
 fontFamily = config['font']['family']
 fontSize = config['font']['size']
@@ -30,7 +32,11 @@ def close(event):
 
 
 def run(event):
-    subprocess.Popen(command.get())
+    if command.get() == '':
+        exit()
+    else:
+        subprocess.Popen(command.get())
+
     root.destroy()
 
 
