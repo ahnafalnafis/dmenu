@@ -1,0 +1,39 @@
+#!/usr/bin/env python
+import sys
+import os
+from tkinter import *
+import json
+
+
+with open('config.json') as file:
+    config = json.load(file)
+
+fontFamily = config['font']['family']
+fontSize = config['font']['size']
+bg = config['background']
+fg = config['foreground']
+cursorColor = config['cursorColor']
+suggestionColor = config['suggestionColor']
+
+
+root = Tk()
+root.overrideredirect(True)
+command = Entry(root, background=bg, foreground=fg,
+                width=root.winfo_screenwidth(), insertbackground=cursorColor, font=(fontFamily, fontSize))
+command.pack()
+command.focus()
+
+
+def close(event):
+    root.destroy()
+
+
+def run(event):
+    os.popen(command.get())
+    root.destroy()
+
+
+root.bind("<Escape>", close)
+root.bind("<Return>", run)
+
+root.mainloop()
