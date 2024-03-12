@@ -11,33 +11,33 @@ with open(config_file) as file:
     config = json.load(file)
 
 
-fontFamily = config['font']['family']
-fontSize = config['font']['size']
-bg = config['background']
-fg = config['foreground']
-cursorColor = config['cursorColor']
-suggestionColor = config['suggestionColor']
+font_family = config['font']['family']
+font_size = config['font']['size']
+background = config['background']
+foreground = config['foreground']
+cursor_color = config['cursorColor']
+suggestion_color = config['suggestionColor']
 
 
 root = Tk()
 root.overrideredirect(True)
-command = Entry(root, background=bg, foreground=fg,
-                width=root.winfo_screenwidth(), insertbackground=cursorColor, font=(fontFamily, fontSize))
+command = Entry(root, background=background, foreground=foreground,
+                width=root.winfo_screenwidth(), insertbackground=cursor_color, font=(font_family, font_size))
 command.pack()
 command.focus()
 
 
-def close(event):
+def close(event = None):
     root.destroy()
 
 
-def run(event):
+def run(event = None):
     if command.get() == '':
         exit()
     else:
         subprocess.Popen(command.get())
 
-    root.destroy()
+    close()
 
 
 root.bind("<Escape>", close)
